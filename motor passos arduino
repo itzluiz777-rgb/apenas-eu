@@ -1,0 +1,52 @@
+#include <Stepper.h>
+
+#define e1 8
+#define e2 9
+#define e3 10
+#define e4 11
+
+const int passosporgiro= 64;
+Stepper mp(passosporgiro,e1,e3,e2,e4);
+
+
+void setup() {
+  mp.setSpeed(500);
+  Serial.begin(9600);
+
+}
+
+void motor(int loop, int vel, int sentido,int temp , int angulo){
+         Serial.println("funcionando");
+         mp.setSpeed(vel);
+       for(int i=0;i<(angulo*loop);i++){  
+            mp.step(passosporgiro*sentido);                     
+}
+delay(temp);
+
+}
+
+void loop() {
+
+  motor(1,500,1,1000,16);
+  delay(500);
+  Serial.println("girando180");
+
+  motor(1,500,-1,1000,16);
+  delay(500);
+  Serial.println("girando-180");
+
+  motor(1,500,-1,1000,32);
+  delay(500);
+  Serial.println("girando360");
+
+  motor(1,500,1,1000,32);
+  delay(500);
+  Serial.println("girando-360");
+
+  motor(1,500,-1,1000,16);
+  delay(500);
+  Serial.println("girando-180");
+
+   
+  
+}
